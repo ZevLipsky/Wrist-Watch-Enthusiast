@@ -11,6 +11,8 @@ import mongoose from 'mongoose';
 import { error } from 'console';
 import { register } from './controllers/auth.js';
 import authRoutes from "./routes/auth.js";
+import { verifyToken } from './middleware/auth.js';
+import userRoutes from "./routes/users.js";
 
 
 //config
@@ -40,10 +42,11 @@ const upload = multer({ storage })
 
 //routes with files//
 //middleware//
-app.post("/auth/register", upload.single("picture"), register);
+app.post("/auth/register", upload.single("picture"),  register);
 
 //Routes
 app.use("/auth", authRoutes);
+app.use("/users", userRoutes);
 
 
 //db setup
