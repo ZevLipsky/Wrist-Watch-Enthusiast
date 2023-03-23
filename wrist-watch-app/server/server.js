@@ -13,8 +13,11 @@ import { register } from './controllers/auth.js';
 import authRoutes from "./routes/auth.js";
 import { verifyToken } from './middleware/auth.js';
 import userRoutes from "./routes/users.js";
-import postRoutes from  "./routes/post.js";
-import createPost from "./controllers/posts.js";
+import postRoutes from  "./routes/posts.js";
+import { createPost } from './controllers/posts.js';
+import User from "./models/User.js";
+import Post from "./models/Post.js";
+import { users, posts } from "./data/index.js";
 
 
 //config
@@ -45,7 +48,7 @@ const upload = multer({ storage })
 //routes with files//
 //middleware//
 app.post("/auth/register", upload.single("picture"),  register);
-app.post("/posts", verifyToken, upload.single("picture"), createPoste);
+app.post("/posts", verifyToken, upload.single("picture"), createPost);
 
 //Routes
 app.use("/auth", authRoutes);
@@ -59,5 +62,8 @@ mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(() => {
-    app.listen(PORT, ()=> console.log(`Running on Port: ${PORT}`))
+    app.listen(PORT, ()=> console.log(`Running on Port: ${PORT}`));
+//add data one time
+//   User.insertMany(users);
+//     Post.insertMany(posts);  // 
 }).catch((error)=> console.log(`${error} did not connect`));
