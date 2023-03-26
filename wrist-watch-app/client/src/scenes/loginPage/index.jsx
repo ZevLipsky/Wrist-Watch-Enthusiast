@@ -23,9 +23,10 @@ const LoginPage = () => {
         m="2rem auto"
         borderRadius="1.5rem"
         backgroundColor={theme.palette.background.alt}
+        
       >
         <Typography fontWeight="500" variant="h5" sx={{ mb: "1.5rem" }}>
-          Welcome to Chrono-media, the Social Media for Watch Lovers!
+          Welcome to Chrono-Media, the Social Media for Watch Lovers!
         </Typography>
         <Form />
       </Box>
