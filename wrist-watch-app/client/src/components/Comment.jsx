@@ -17,7 +17,7 @@ const { palette } = useTheme();
 const main = palette.neutral.main;
 
 const getCommentUser = async() => {
-  const response = await fetch(`http://localhost:3001/users/${userId}`, {
+  const response = await fetch(`${process.env.REACT_APP_BASE_URL}//${userId}`, {
     method: "GET",
     headers: { Authorization: `Bearer ${token}` },
   });
@@ -26,7 +26,7 @@ const getCommentUser = async() => {
 };
 
 const handleDeleteComment = async() => {
-  const response = await fetch(`http://localhost:3001/posts/${postId}/${userId}/comment/delete`,{
+  const response = await fetch(`${process.env.REACT_APP_BASE_URL}/posts/${postId}/${userId}/comment/delete`,{
     method:"PATCH",
     headers: {
       Authorization: `Bearer ${token}`,
