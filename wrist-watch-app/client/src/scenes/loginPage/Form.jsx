@@ -79,7 +79,7 @@ const Form = () => {
   };
 
   const login = async (values, onSubmitProps) => {
-    const loggedInResponse = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/login`, {
+    const loggedInResponse = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/login`,  {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
